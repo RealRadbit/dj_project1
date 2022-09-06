@@ -1,5 +1,3 @@
-from atexit import register
-import imp
 from django import template
 from blog.models import Category
 
