@@ -49,7 +49,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, verbose_name='Url', unique=True)
-    author = models.CharField(max_length=100)
+    author = models.CharField(max_length=100, default="Agent Shrek")
     content = models.TextField(blank=True)
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name='Опубликовано')
@@ -61,6 +61,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('post', kwargs={"slug": self.slug})
 
     class Meta:
         ordering = ['-created_at']
